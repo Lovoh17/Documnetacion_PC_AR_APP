@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación - Azamoz Shopping</title>
+    <link rel="icon" href="/azamoz_logo2.png" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS personalizado -->
+    <style>
+        :root {
+            --bs-primary: #60B1E3;
+            --bs-secondary: #232F3E;
+            --bs-accent: #f39c12;
+            --bs-dark-blue: #1A4A6A;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .bg-primary {
+            background-color: var(--bs-primary) !important;
+        }
+        
+        .bg-dark-blue {
+            background-color: var(--bs-dark-blue) !important;
+        }
+        
+        .text-primary {
+            color: var(--bs-primary) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4a9fd6;
+            border-color: #4a9fd6;
+            color: white;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        /* Sidebar estilo índice */
+        .doc-sidebar {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        
+        .doc-sidebar .nav-link {
+            color: var(--bs-secondary);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .doc-sidebar .nav-link:hover, 
+        .doc-sidebar .nav-link.active {
+            background-color: rgba(96, 177, 227, 0.1);
+            color: var(--bs-primary);
+        }
+        
+        .doc-sidebar .nav-link.active {
+            font-weight: 600;
+            border-left: 3px solid var(--bs-primary);
+        }
+        
+        /* Contenido principal */
+        .doc-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+        
+        .doc-section {
+            scroll-margin-top: 90px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+        
+        .doc-section:last-child {
+            border-bottom: none;
+        }
+        
+        /* Estilos para código */
+        pre {
+            border-radius: 8px;
+            padding: 15px;
+            background: #282c34;
+            color: #abb2bf;
+            overflow-x: auto;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        /* Tarjetas de características */
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--bs-primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Estilos para activities */
+        .activity, .component {
+            background: #f5f5f5;
+            border-left: 4px solid #60B1E3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+        .activity h3, .component h3 {
+            color: #60B1E3;
+            margin-top: 0;
+        }
+        .activity ul, .component ul {
+            padding-left: 20px;
+        }
+        .activity li strong, .component li strong {
+            color: #607D8B;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#doc-nav">
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-phone me-2"></i>Azamoz Shopping
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="View/documentacion.html">Documentación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="View/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container py-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2">
+                <div class="doc-sidebar">
+                    <h4 class="fw-bold mb-4 text-primary">
+                        <i class="bi bi-book me-2"></i>Documentación
+                    </h4>
+                    <nav id="doc-nav" class="nav flex-column">
+                        <a class="nav-link" href="#introduccion">Introducción</a>
+                        <a class="nav-link" href="#requisitos">Requisitos</a>
+                        <a class="nav-link" href="#configuracion">Configuración</a>
+                        
+                        <div class=""> <!-- Indentación para la subsección -->
+                            <a class="nav-link" href="#Arquitectura">Arquitectura</a>
+                            <div class="ps-3"> <!-- Más indentación para los subitems -->
+                                <a class="nav-link small" href="#fragmentos">Fragmnetos</a>
+                                <a class="nav-link small" href="#dialogos">Dialogos</a>
+                                <a class="nav-link small" href="#activities">Activities</a>
+                            </div>
+                        </div>
+                        
+                        <a class="nav-link" href="#arcore">ARCore con Java</a>
+                        <a class="nav-link" href="#firebase">Firebase</a>
+                        <a class="nav-link" href="#vistas">Vistas Principales</a>
+                        <a class="nav-link" href="#despliegue">Despliegue</a>
+                    </nav>
+                    <div class="mt-5">
+                        <h5 class="fw-bold mb-3">Recursos</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="bi bi-github me-2"></i>Repositorio
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="bi bi-file-earmark-code me-2"></i>API Docs
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="bi bi-download me-2"></i>Descargar APK
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenido de documentación -->
+            <div class="col-lg-9">
+                <div class="doc-content">
+                    <!-- Introducción -->
+                    <section id="introduccion" class="doc-section">
+                        <h2 class="fw-bold mb-4">Introducción</h2>
+                        <p class="lead">Azamoz Shopping es una aplicación de comercio electrónico con realidad aumentada desarrollada en Android Studio con Java.</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-4">
+                                <div class="card feature-card shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-phone"></i>
+                                        </div>
+                                        <h4>Experiencia AR</h4>
+                                        <p>Visualiza productos en tu espacio con tecnología ARCore</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <div class="card feature-card shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="feature-icon">
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <h4>Carrito Inteligente</h4>
+                                        <p>Gestiona tus compras con facilidad</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Requisitos -->
+                    <section id="requisitos" class="doc-section">
+                        <h2 class="fw-bold mb-4">Requisitos</h2>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-primary text-white">
+                                        <i class="bi bi-laptop"></i> Desarrollo
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>Android Studio Flamingo | 2022.2.1+</li>
+                                            <li>JDK 11+</li>
+                                            <li>SDK Platform Android 8.0+</li>
+                                            <li>Dispositivo compatible con ARCore</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-primary text-white">
+                                        <i class="bi bi-phone"></i> Producción
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>Android 8.0+ (Oreo)</li>
+                                            <li>2GB RAM mínimo</li>
+                                            <li>Soporte para ARCore</li>
+                                            <li>Conexión a Internet</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Arquitectura -->
+                    <section id="Arquitectura" class="doc-section">
+                        <h2 class="fw-bold mb-4">Arquitectura</h2>
+                        
+                        <!-- Activities -->
+                        <div id="activities" class="mt-5">
+                            <h3 class="fw-bold mb-4">Activities</h3>
+                            
+                            <div class="activity">
+                                <h3>AdminActivity</h3>
+                                <p>Activity que proporciona la interfaz de administración del sistema. Permite al administrador gestionar usuarios, productos y órdenes.</p>
+                                <ul>
+                                    <li><strong>Funcionalidades:</strong> Dashboard administrativo, gestión de usuarios, gestión de productos, visualización de estadísticas</li>
+                                    <li><strong>Layout:</strong> activity_admin.xml</li>
+                                    <li><strong>Navegación:</strong> Accesible solo para usuarios con rol de administrador</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>AR_test</h3>
+                                <p>Activity de prueba para funcionalidades de Realidad Aumentada (AR). Implementa pruebas de anclajes y visualización de objetos 3D.</p>
+                                <ul>
+                                    <li><strong>Tecnologías:</strong> ARCore, Sceneform</li>
+                                    <li><strong>Dependencias:</strong> com.google.ar.sceneform.ux</li>
+                                    <li><strong>Notas:</strong> Activity de desarrollo/testeo, no para producción</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>GiftCardStoreActivity</h3>
+                                <p>Activity que muestra el catálogo de tarjetas de regalo disponibles para compra.</p>
+                                <ul>
+                                    <li><strong>Funcionalidades:</strong> Listado de gift cards, filtrado por categorías, compra de tarjetas</li>
+                                    <li><strong>Integraciones:</strong> API de pagos, Firebase Database</li>
+                                    <li><strong>Eventos:</strong> onClick para selección de tarjeta</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>InicioActivity</h3>
+                                <p>Pantalla principal de la aplicación después del login. Muestra contenido destacado y opciones principales.</p>
+                                <ul>
+                                    <li><strong>Componentes:</strong> RecyclerView para productos destacados, menú inferior</li>
+                                    <li><strong>Navegación:</strong> Conduce a ProductShowARActivity, GiftCardStoreActivity, OrdersActivity</li>
+                                    <li><strong>Datos:</strong> Obtiene información de Firebase Realtime Database</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>LoginActivity</h3>
+                                <p>Pantalla de inicio de sesión para usuarios registrados. Valida credenciales contra Firebase Authentication.</p>
+                                <ul>
+                                    <li><strong>Validaciones:</strong> Formato email, longitud contraseña</li>
+                                    <li><strong>Flujo:</strong> Redirige a InicioActivity tras login exitoso</li>
+                                    <li><strong>Opciones:</strong> Enlace a RegisterActivity, recuperación de contraseña</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>OrdersActivity</h3>
+                                <p>Muestra el historial de pedidos del usuario con capacidad de filtrar y ver detalles.</p>
+                                <ul>
+                                    <li><strong>Vistas:</strong> RecyclerView con adaptador personalizado</li>
+                                    <li><strong>Estados:</strong> Muestra pedidos pendientes, completados y cancelados</li>
+                                    <li><strong>Acciones:</strong> Cancelar pedidos pendientes, reordenar</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>ProductShowARActivity</h3>
+                                <p>Activity principal de Realidad Aumentada que permite visualizar productos en 3D en el entorno del usuario.</p>
+                                <ul>
+                                    <li><strong>Features AR:</strong> Anclajes persistentes (wrappedAnchor), escalado de modelos</li>
+                                    <li><strong>Modelos 3D:</strong> Carga desde Firebase Storage</li>
+                                    <li><strong>Interacción:</strong> Rotación con gestos, modo examen detallado</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>RegisterActivity</h3>
+                                <p>Pantalla de registro para nuevos usuarios. Recopila información básica y crea cuenta en Firebase Auth.</p>
+                                <ul>
+                                    <li><strong>Campos:</strong> Nombre, email, contraseña, confirmación contraseña</li>
+                                    <li><strong>Validaciones:</strong> Unicidad de email, fortaleza contraseña</li>
+                                    <li><strong>Flujo:</strong> Redirige a LoginActivity tras registro exitoso</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="activity">
+                                <h3>SplashActivity</h3>
+                                <p>Pantalla inicial de la aplicación con logo y versión. Realiza comprobaciones iniciales.</p>
+                                <ul>
+                                    <li><strong>Duración:</strong> 2 segundos (mínimo)</li>
+                                    <li><strong>Lógica:</strong> Verifica sesión activa, redirige a LoginActivity o InicioActivity</li>
+                                    <li><strong>Assets:</strong> Logo corporativo, animación de carga</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="component">
+                                <h3>wrappedAnchor</h3>
+                                <p>Componente de ARCore que gestiona anclajes persistentes para objetos de realidad aumentada.</p>
+                                <ul>
+                                    <li><strong>Propósito:</strong> Mantener posición de objetos AR entre sesiones</li>
+                                    <li><strong>Técnica:</strong> Almacena coordenadas relativas y datos de orientación</li>
+                                    <li><strong>Uso:</strong> Implementado en ProductShowARActivity</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- ARCore con Java -->
+                    <section id="arcore" class="doc-section">
+                        <h2 class="fw-bold mb-4">ARCore con Android Studio (Java)</h2>
+                        <p class="lead">Implementación de realidad aumentada en la aplicación</p>
+                        
+                        <h4 class="mt-4">1. Configuración inicial</h4>
+                        <p>Agrega estas dependencias en tu <code>build.gradle</code>:</p>
+                        <pre><code>dependencies {
+    implementation 'com.google.ar:core:1.35.0'
+    implementation 'com.google.ar.sceneform:core:1.17.1'
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.17.1'
+}</code></pre>
+                        
+                        <h4 class="mt-4">2. Configura el AndroidManifest.xml</h4>
+                        <pre><code>&lt;uses-permission android:name="android.permission.CAMERA" /&gt;
+&lt;uses-feature android:name="android.hardware.camera.ar" android:required="true" /&gt;
+
+&lt;application&gt;
+    &lt;meta-data android:name="com.google.ar.core" android:value="required" /&gt;
+&lt;/application&gt;</code></pre>
+                        
+                        <h4 class="mt-4">3. Implementación básica</h4>
+                        <p>Crea una actividad AR:</p>
+                        <pre><code>public class ARActivity extends AppCompatActivity {
+    private ArFragment arFragment;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ar);
+        
+        arFragment = (ArFragment) getSupportFragmentManager()
+            .findFragmentById(R.id.arFragment);
+            
+        // Configuración de modelos y listeners...
+    }
+}</code></pre>
+                        
+                        <div class="alert alert-primary mt-4">
+                            <i class="bi bi-lightbulb"></i> <strong>Consejo:</strong> Usa <code>Sceneform</code> para manejar modelos 3D de manera eficiente.
+                        </div>
+                    </section>
+                    
+                    <!-- Vistas Principales -->
+                    <section id="vistas" class="doc-section">
+                        <h2 class="fw-bold mb-4">Vistas Principales</h2>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100">
+                                    <img src="https://i.imgur.com/J1q8B6s.png" class="card-img-top" alt="Inicio">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pantalla de Inicio</h5>
+                                        <p class="card-text">Muestra productos destacados y categorías.</p>
+                                        <code>MainActivity.java</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100">
+                                    <img src="https://i.imgur.com/Xr7J9Qk.png" class="card-img-top" alt="Producto">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Detalle de Producto</h5>
+                                        <p class="card-text">Muestra detalles y opción AR.</p>
+                                        <code>ProductDetailActivity.java</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="card h-100">
+                                    <img src="https://i.imgur.com/vV3hLZz.png" class="card-img-top" alt="Carrito">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Carrito de Compras</h5>
+                                        <p class="card-text">Gestiona productos antes de pagar.</p>
+                                        <code>CartActivity.java</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-secondary text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Azamoz Shopping</h5>
+                    <p>La mejor experiencia de compra en realidad aumentada</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">© 2025 Todos los derechos reservados a grupo de desarrolladores LivinsDev`s</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script para el scroll spy -->
+    <script>
+        // Activar scroll spy
+        var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+            target: '#doc-nav'
+        });
+        
+        // Resaltar enlace activo
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('#doc-nav .nav-link');
+            
+            function highlightNav() {
+                const fromTop = window.scrollY + 100;
+                
+                navLinks.forEach(link => {
+                    const section = document.querySelector(link.getAttribute('href'));
+                    
+                    if (
+                        section.offsetTop <= fromTop &&
+                        section.offsetTop + section.offsetHeight > fromTop
+                    ) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightNav);
+            highlightNav();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        // Inicializa los dropdowns
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+        dropdownElementList.map(function (dropdownToggleEl) {
+            return new bootstrap.Dropdown(dropdownToggleEl)
+        });
+        });
+    </script>
+</body>
+</html>
