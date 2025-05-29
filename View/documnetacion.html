@@ -300,115 +300,6 @@
                         </div>
                     </section>
                     
-                    <!-- Arquitectura -->
-                    <section id="Arquitectura" class="doc-section">
-                        <h2 class="fw-bold mb-4">Arquitectura</h2>
-                        
-                        <!-- Activities -->
-                        <div id="activities" class="mt-5">
-                            <h3 class="fw-bold mb-4">Activities</h3>
-                            
-                            <div class="activity">
-                                <h3>AdminActivity</h3>
-                                <p>Activity que proporciona la interfaz de administración del sistema. Permite al administrador gestionar usuarios, productos y órdenes.</p>
-                                <ul>
-                                    <li><strong>Funcionalidades:</strong> Dashboard administrativo, gestión de usuarios, gestión de productos, visualización de estadísticas</li>
-                                    <li><strong>Layout:</strong> activity_admin.xml</li>
-                                    <li><strong>Navegación:</strong> Accesible solo para usuarios con rol de administrador</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>AR_test</h3>
-                                <p>Activity de prueba para funcionalidades de Realidad Aumentada (AR). Implementa pruebas de anclajes y visualización de objetos 3D.</p>
-                                <ul>
-                                    <li><strong>Tecnologías:</strong> ARCore, Sceneform</li>
-                                    <li><strong>Dependencias:</strong> com.google.ar.sceneform.ux</li>
-                                    <li><strong>Notas:</strong> Activity de desarrollo/testeo, no para producción</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>GiftCardStoreActivity</h3>
-                                <p>Activity que muestra el catálogo de tarjetas de regalo disponibles para compra.</p>
-                                <ul>
-                                    <li><strong>Funcionalidades:</strong> Listado de gift cards, filtrado por categorías, compra de tarjetas</li>
-                                    <li><strong>Integraciones:</strong> API de pagos, Firebase Database</li>
-                                    <li><strong>Eventos:</strong> onClick para selección de tarjeta</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>InicioActivity</h3>
-                                <p>Pantalla principal de la aplicación después del login. Muestra contenido destacado y opciones principales.</p>
-                                <ul>
-                                    <li><strong>Componentes:</strong> RecyclerView para productos destacados, menú inferior</li>
-                                    <li><strong>Navegación:</strong> Conduce a ProductShowARActivity, GiftCardStoreActivity, OrdersActivity</li>
-                                    <li><strong>Datos:</strong> Obtiene información de Firebase Realtime Database</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>LoginActivity</h3>
-                                <p>Pantalla de inicio de sesión para usuarios registrados. Valida credenciales contra Firebase Authentication.</p>
-                                <ul>
-                                    <li><strong>Validaciones:</strong> Formato email, longitud contraseña</li>
-                                    <li><strong>Flujo:</strong> Redirige a InicioActivity tras login exitoso</li>
-                                    <li><strong>Opciones:</strong> Enlace a RegisterActivity, recuperación de contraseña</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>OrdersActivity</h3>
-                                <p>Muestra el historial de pedidos del usuario con capacidad de filtrar y ver detalles.</p>
-                                <ul>
-                                    <li><strong>Vistas:</strong> RecyclerView con adaptador personalizado</li>
-                                    <li><strong>Estados:</strong> Muestra pedidos pendientes, completados y cancelados</li>
-                                    <li><strong>Acciones:</strong> Cancelar pedidos pendientes, reordenar</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>ProductShowARActivity</h3>
-                                <p>Activity principal de Realidad Aumentada que permite visualizar productos en 3D en el entorno del usuario.</p>
-                                <ul>
-                                    <li><strong>Features AR:</strong> Anclajes persistentes (wrappedAnchor), escalado de modelos</li>
-                                    <li><strong>Modelos 3D:</strong> Carga desde Firebase Storage</li>
-                                    <li><strong>Interacción:</strong> Rotación con gestos, modo examen detallado</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>RegisterActivity</h3>
-                                <p>Pantalla de registro para nuevos usuarios. Recopila información básica y crea cuenta en Firebase Auth.</p>
-                                <ul>
-                                    <li><strong>Campos:</strong> Nombre, email, contraseña, confirmación contraseña</li>
-                                    <li><strong>Validaciones:</strong> Unicidad de email, fortaleza contraseña</li>
-                                    <li><strong>Flujo:</strong> Redirige a LoginActivity tras registro exitoso</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="activity">
-                                <h3>SplashActivity</h3>
-                                <p>Pantalla inicial de la aplicación con logo y versión. Realiza comprobaciones iniciales.</p>
-                                <ul>
-                                    <li><strong>Duración:</strong> 2 segundos (mínimo)</li>
-                                    <li><strong>Lógica:</strong> Verifica sesión activa, redirige a LoginActivity o InicioActivity</li>
-                                    <li><strong>Assets:</strong> Logo corporativo, animación de carga</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="component">
-                                <h3>wrappedAnchor</h3>
-                                <p>Componente de ARCore que gestiona anclajes persistentes para objetos de realidad aumentada.</p>
-                                <ul>
-                                    <li><strong>Propósito:</strong> Mantener posición de objetos AR entre sesiones</li>
-                                    <li><strong>Técnica:</strong> Almacena coordenadas relativas y datos de orientación</li>
-                                    <li><strong>Uso:</strong> Implementado en ProductShowARActivity</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
                     
                     <!-- ARCore con Java -->
                     <section id="arcore" class="doc-section">
@@ -460,7 +351,7 @@
                         <div class="row">
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100">
-                                    <img src="https://i.imgur.com/J1q8B6s.png" class="card-img-top" alt="Inicio">
+                                    <img src="src/inicio.jpg" class="card-img-top" alt="Inicio">
                                     <div class="card-body">
                                         <h5 class="card-title">Pantalla de Inicio</h5>
                                         <p class="card-text">Muestra productos destacados y categorías.</p>
@@ -470,7 +361,7 @@
                             </div>
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100">
-                                    <img src="https://i.imgur.com/Xr7J9Qk.png" class="card-img-top" alt="Producto">
+                                    <img src="src/detalleProducto.jpg" class="card-img-top" alt="Producto">
                                     <div class="card-body">
                                         <h5 class="card-title">Detalle de Producto</h5>
                                         <p class="card-text">Muestra detalles y opción AR.</p>
@@ -480,7 +371,7 @@
                             </div>
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100">
-                                    <img src="https://i.imgur.com/vV3hLZz.png" class="card-img-top" alt="Carrito">
+                                    <img src="src/carrito.jpg" class="card-img-top" alt="Carrito">
                                     <div class="card-body">
                                         <h5 class="card-title">Carrito de Compras</h5>
                                         <p class="card-text">Gestiona productos antes de pagar.</p>
