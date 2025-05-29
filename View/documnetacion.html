@@ -52,7 +52,7 @@
             font-size: 1.5rem;
         }
         
-        /* Sidebar estilo índice */
+        /* Sidebar estilo índice - Versión escritorio */
         .doc-sidebar {
             position: sticky;
             top: 20px;
@@ -78,6 +78,36 @@
         .doc-sidebar .nav-link.active {
             font-weight: 600;
             border-left: 3px solid var(--bs-primary);
+        }
+        
+        /* Sidebar móvil */
+        .mobile-sidebar {
+            display: none;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-sidebar .btn {
+            width: 100%;
+            text-align: left;
+            padding: 10px 15px;
+            background-color: var(--bs-primary);
+            color: white;
+        }
+        
+        .mobile-sidebar .dropdown-menu {
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .mobile-sidebar .dropdown-item {
+            padding: 8px 15px;
+        }
+        
+        .mobile-sidebar .dropdown-item.active {
+            background-color: rgba(96, 177, 227, 0.1);
+            color: var(--bs-primary);
+            font-weight: 600;
         }
         
         /* Contenido principal */
@@ -149,9 +179,36 @@
         .activity li strong, .component li strong {
             color: #607D8B;
         }
+        
+        /* Media queries para responsive */
+        @media (max-width: 991.98px) {
+            .doc-sidebar {
+                display: none;
+            }
+            
+            .mobile-sidebar {
+                display: block;
+            }
+            
+            .doc-content {
+                padding: 20px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .col-lg-2 {
+                flex: 0 0 auto;
+                width: 16.66666667%;
+            }
+            
+            .col-lg-9 {
+                flex: 0 0 auto;
+                width: 75%;
+            }
+        }
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#doc-nav">
+<body data-bs-spy="scroll" data-bs-target="#doc-nav, #mobile-doc-nav">
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
@@ -164,7 +221,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="/">Inicio</a>
+                        <a class="nav-link text-white" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="View/documentacion.html">Documentación</a>
@@ -180,8 +237,31 @@
     <!-- Contenido principal -->
     <div class="container py-5">
         <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-2">
+            <!-- Sidebar móvil (solo visible en pantallas pequeñas) -->
+            <div class="col-12 mobile-sidebar d-lg-none">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="mobileSidebarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-book me-2"></i>Menú de Documentación
+                    </button>
+                    <ul class="dropdown-menu" id="mobile-doc-nav" aria-labelledby="mobileSidebarDropdown">
+                        <li><a class="dropdown-item" href="#introduccion">Introducción</a></li>
+                        <li><a class="dropdown-item" href="#requisitos">Requisitos</a></li>
+                        <li><a class="dropdown-item" href="#configuracion">Configuración</a></li>
+                        <li><a class="dropdown-item" href="#arcore">ARCore con Java</a></li>
+                        <li><a class="dropdown-item" href="#firebase">Firebase</a></li>
+                        <li><a class="dropdown-item" href="#vistas">Vistas Principales</a></li>
+                        <li><a class="dropdown-item" href="#despliegue">Despliegue</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><h6 class="dropdown-header">Recursos</h6></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-github me-2"></i>Repositorio</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-code me-2"></i>API Docs</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>Descargar APK</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Sidebar escritorio (solo visible en pantallas grandes) -->
+            <div class="col-lg-2 d-none d-lg-block">
                 <div class="doc-sidebar">
                     <h4 class="fw-bold mb-4 text-primary">
                         <i class="bi bi-book me-2"></i>Documentación
@@ -229,7 +309,7 @@
             </div>
             
             <!-- Contenido de documentación -->
-            <div class="col-lg-9">
+            <div class="col-lg-9 col-12">
                 <div class="doc-content">
                     <!-- Introducción -->
                     <section id="introduccion" class="doc-section">
@@ -410,7 +490,12 @@
             target: '#doc-nav'
         });
         
-        // Resaltar enlace activo
+        // También para la versión móvil
+        var mobileScrollSpy = new bootstrap.ScrollSpy(document.body, {
+            target: '#mobile-doc-nav'
+        });
+        
+        // Resaltar enlace activo en sidebar de escritorio
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('#doc-nav .nav-link');
             
@@ -421,6 +506,7 @@
                     const section = document.querySelector(link.getAttribute('href'));
                     
                     if (
+                        section && 
                         section.offsetTop <= fromTop &&
                         section.offsetTop + section.offsetHeight > fromTop
                     ) {
@@ -434,13 +520,33 @@
             window.addEventListener('scroll', highlightNav);
             highlightNav();
         });
-
+        
+        // Resaltar ítem activo en dropdown móvil
         document.addEventListener('DOMContentLoaded', function() {
-        // Inicializa los dropdowns
-        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-        dropdownElementList.map(function (dropdownToggleEl) {
-            return new bootstrap.Dropdown(dropdownToggleEl)
-        });
+            const mobileLinks = document.querySelectorAll('#mobile-doc-nav .dropdown-item');
+            
+            function highlightMobileNav() {
+                const fromTop = window.scrollY + 100;
+                
+                mobileLinks.forEach(link => {
+                    if (link.getAttribute('href')) {
+                        const section = document.querySelector(link.getAttribute('href'));
+                        
+                        if (
+                            section && 
+                            section.offsetTop <= fromTop &&
+                            section.offsetTop + section.offsetHeight > fromTop
+                        ) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightMobileNav);
+            highlightMobileNav();
         });
     </script>
 </body>
