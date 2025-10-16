@@ -9,18 +9,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Iconos Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- CSS personalizado -->
     <style>
         :root {
-            --bs-primary: #60B1E3;
-            --bs-secondary: #232F3E;
-            --bs-accent: #f39c12;
-            --bs-dark-blue: #1A4A6A;
+            --bs-primary: #2C6A95;
+            --bs-primary-dark: #1A4A6A;
+            --bs-secondary: #1E2A36;
+            --bs-accent: #E67E22;
+            --bs-dark-blue: #0F2D42;
+            --bs-light-bg: #F8FAFC;
+            --bs-card-bg: #FFFFFF;
+            --bs-text-primary: #2D3748;
+            --bs-text-secondary: #718096;
+            --bs-border: #E2E8F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bs-light-bg);
+            color: var(--bs-text-primary);
+            line-height: 1.6;
         }
         
         .bg-primary {
@@ -39,17 +55,61 @@
             background-color: var(--bs-primary);
             border-color: var(--bs-primary);
             color: white;
+            font-weight: 500;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(44, 106, 149, 0.2);
         }
         
         .btn-primary:hover {
-            background-color: #4a9fd6;
-            border-color: #4a9fd6;
+            background-color: var(--bs-primary-dark);
+            border-color: var(--bs-primary-dark);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 106, 149, 0.3);
+        }
+        
+        .btn-outline-primary {
+            color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            font-weight: 500;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--bs-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 106, 149, 0.2);
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
         
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white !important;
         }
         
         /* Sidebar estilo índice - Versión escritorio */
@@ -62,22 +122,29 @@
         }
         
         .doc-sidebar .nav-link {
-            color: var(--bs-secondary);
-            padding: 8px 15px;
-            border-radius: 5px;
+            color: var(--bs-text-secondary);
+            padding: 10px 15px;
+            border-radius: 6px;
             margin-bottom: 5px;
             transition: all 0.3s ease;
+            font-weight: 500;
+            border-left: 3px solid transparent;
         }
         
         .doc-sidebar .nav-link:hover, 
         .doc-sidebar .nav-link.active {
-            background-color: rgba(96, 177, 227, 0.1);
+            background-color: rgba(44, 106, 149, 0.08);
             color: var(--bs-primary);
+            border-left-color: var(--bs-primary);
         }
         
         .doc-sidebar .nav-link.active {
             font-weight: 600;
-            border-left: 3px solid var(--bs-primary);
+        }
+        
+        .doc-sidebar .nav-link.small {
+            font-size: 0.9rem;
+            padding-left: 30px;
         }
         
         /* Sidebar móvil */
@@ -89,23 +156,30 @@
         .mobile-sidebar .btn {
             width: 100%;
             text-align: left;
-            padding: 10px 15px;
+            padding: 12px 15px;
             background-color: var(--bs-primary);
             color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(44, 106, 149, 0.2);
         }
         
         .mobile-sidebar .dropdown-menu {
             width: 100%;
             max-height: 400px;
             overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--bs-border);
         }
         
         .mobile-sidebar .dropdown-item {
-            padding: 8px 15px;
+            padding: 10px 15px;
+            transition: all 0.2s ease;
         }
         
         .mobile-sidebar .dropdown-item.active {
-            background-color: rgba(96, 177, 227, 0.1);
+            background-color: rgba(44, 106, 149, 0.1);
             color: var(--bs-primary);
             font-weight: 600;
         }
@@ -113,16 +187,17 @@
         /* Contenido principal */
         .doc-content {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 40px;
+            border: 1px solid var(--bs-border);
         }
         
         .doc-section {
             scroll-margin-top: 90px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--bs-border);
+            margin-bottom: 40px;
         }
         
         .doc-section:last-child {
@@ -132,52 +207,122 @@
         /* Estilos para código */
         pre {
             border-radius: 8px;
-            padding: 15px;
+            padding: 20px;
             background: #282c34;
             color: #abb2bf;
             overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.5;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--bs-primary);
         }
         
         code {
             font-family: 'Courier New', Courier, monospace;
+            background-color: rgba(44, 106, 149, 0.1);
+            color: var(--bs-primary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
         
         /* Tarjetas de características */
         .feature-card {
             border: none;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            transition: all 0.4s ease;
             height: 100%;
+            background-color: var(--bs-card-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
         }
         
         .feature-icon {
-            font-size: 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
             color: var(--bs-primary);
-            margin-bottom: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(44, 106, 149, 0.1) 0%, rgba(44, 106, 149, 0.05) 100%);
+            box-shadow: 0 4px 6px rgba(44, 106, 149, 0.1);
         }
         
-        /* Estilos para activities */
-        .activity, .component {
-            background: #f5f5f5;
-            border-left: 4px solid #60B1E3;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 0 4px 4px 0;
+        .card {
+            border: none;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background-color: var(--bs-card-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
-        .activity h3, .component h3 {
-            color: #60B1E3;
-            margin-top: 0;
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        .activity ul, .component ul {
-            padding-left: 20px;
+        
+        .card-header {
+            background-color: var(--bs-primary);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 15px 20px;
         }
-        .activity li strong, .component li strong {
-            color: #607D8B;
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .section-padding {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--bs-primary), var(--bs-accent));
+            border-radius: 2px;
+        }
+        
+        .alert-primary {
+            background-color: rgba(44, 106, 149, 0.1);
+            border-color: rgba(44, 106, 149, 0.2);
+            color: var(--bs-primary-dark);
+            border-radius: 8px;
+            border-left: 4px solid var(--bs-primary);
+        }
+        
+        footer {
+            background-color: var(--bs-secondary) !important;
+        }
+        
+        .text-muted {
+            color: var(--bs-text-secondary) !important;
+        }
+        
+        .lead {
+            color: var(--bs-text-secondary);
+            font-weight: 400;
         }
         
         /* Media queries para responsive */
@@ -191,7 +336,11 @@
             }
             
             .doc-content {
-                padding: 20px;
+                padding: 25px;
+            }
+            
+            .section-padding {
+                padding: 4rem 0;
             }
         }
         
@@ -212,7 +361,7 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="../index.html">
                 <i class="bi bi-phone me-2"></i>Azamoz Shopping
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -221,10 +370,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="View/documentacion.html">Documentación</a>
+                        <a class="nav-link text-white" href="../View/documnetacion.html">Documentación</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="View/contacto.html">Contacto</a>
+                        <a class="nav-link text-white" href="../View/contacto.html">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -268,11 +417,11 @@
                         <a class="nav-link" href="#requisitos">Requisitos</a>
                         <a class="nav-link" href="#configuracion">Configuración</a>
                         
-                        <div class=""> <!-- Indentación para la subsección -->
-                            <a class="nav-link" href="#Arquitectura">Arquitectura</a>
-                            <div class="ps-3"> <!-- Más indentación para los subitems -->
-                                <a class="nav-link small" href="#fragmentos">Fragmnetos</a>
-                                <a class="nav-link small" href="#dialogos">Dialogos</a>
+                        <div class="mt-2">
+                            <a class="nav-link fw-semibold" href="#Arquitectura">Arquitectura</a>
+                            <div class="ps-2">
+                                <a class="nav-link small" href="#fragmentos">Fragmentos</a>
+                                <a class="nav-link small" href="#dialogos">Diálogos</a>
                                 <a class="nav-link small" href="#activities">Activities</a>
                             </div>
                         </div>
@@ -282,7 +431,7 @@
                         <a class="nav-link" href="#vistas">Vistas Principales</a>
                         <a class="nav-link" href="#despliegue">Despliegue</a>
                     </nav>
-                    <div class="mt-5">
+                    <div class="mt-5 pt-3 border-top">
                         <h5 class="fw-bold mb-3">Recursos</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item">
@@ -310,29 +459,29 @@
                 <div class="doc-content">
                     <!-- Introducción -->
                     <section id="introduccion" class="doc-section">
-                        <h2 class="fw-bold mb-4">Introducción</h2>
+                        <h2 class="section-title">Introducción</h2>
                         <p class="lead">Azamoz Shopping es una aplicación de comercio electrónico con realidad aumentada desarrollada en Android Studio con Java.</p>
                         
-                        <div class="row mt-4">
+                        <div class="row mt-5">
                             <div class="col-md-6 mb-4">
                                 <div class="card feature-card shadow-sm">
                                     <div class="card-body text-center p-4">
-                                        <div class="feature-icon">
+                                        <div class="feature-icon mx-auto">
                                             <i class="bi bi-phone"></i>
                                         </div>
-                                        <h4>Experiencia AR</h4>
-                                        <p>Visualiza productos en tu espacio con tecnología ARCore</p>
+                                        <h4 class="fw-bold mb-3">Experiencia AR</h4>
+                                        <p class="text-muted">Visualiza productos en tu espacio con tecnología ARCore</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
                                 <div class="card feature-card shadow-sm">
                                     <div class="card-body text-center p-4">
-                                        <div class="feature-icon">
+                                        <div class="feature-icon mx-auto">
                                             <i class="bi bi-cart"></i>
                                         </div>
-                                        <h4>Carrito Inteligente</h4>
-                                        <p>Gestiona tus compras con facilidad</p>
+                                        <h4 class="fw-bold mb-3">Carrito Inteligente</h4>
+                                        <p class="text-muted">Gestiona tus compras con facilidad</p>
                                     </div>
                                 </div>
                             </div>
@@ -341,35 +490,35 @@
                     
                     <!-- Requisitos -->
                     <section id="requisitos" class="doc-section">
-                        <h2 class="fw-bold mb-4">Requisitos</h2>
+                        <h2 class="section-title">Requisitos</h2>
                         
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-6">
                                 <div class="card mb-4">
-                                    <div class="card-header bg-primary text-white">
-                                        <i class="bi bi-laptop"></i> Desarrollo
+                                    <div class="card-header">
+                                        <i class="bi bi-laptop me-2"></i> Desarrollo
                                     </div>
                                     <div class="card-body">
-                                        <ul>
-                                            <li>Android Studio Flamingo | 2022.2.1+</li>
-                                            <li>JDK 11+</li>
-                                            <li>SDK Platform Android 8.0+</li>
-                                            <li>Dispositivo compatible con ARCore</li>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Android Studio Flamingo | 2022.2.1+</li>
+                                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>JDK 11+</li>
+                                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>SDK Platform Android 8.0+</li>
+                                            <li><i class="bi bi-check-circle text-primary me-2"></i>Dispositivo compatible con ARCore</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="card mb-4">
-                                    <div class="card-header bg-primary text-white">
-                                        <i class="bi bi-phone"></i> Producción
+                                    <div class="card-header">
+                                        <i class="bi bi-phone me-2"></i> Producción
                                     </div>
                                     <div class="card-body">
-                                        <ul>
-                                            <li>Android 8.0+ (Oreo)</li>
-                                            <li>2GB RAM mínimo</li>
-                                            <li>Soporte para ARCore</li>
-                                            <li>Conexión a Internet</li>
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Android 8.0+ (Oreo)</li>
+                                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>2GB RAM mínimo</li>
+                                            <li class="mb-2"><i class="bi bi-check-circle text-primary me-2"></i>Soporte para ARCore</li>
+                                            <li><i class="bi bi-check-circle text-primary me-2"></i>Conexión a Internet</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -377,13 +526,12 @@
                         </div>
                     </section>
                     
-                    
                     <!-- ARCore con Java -->
                     <section id="arcore" class="doc-section">
-                        <h2 class="fw-bold mb-4">ARCore con Android Studio (Java)</h2>
+                        <h2 class="section-title">ARCore con Android Studio (Java)</h2>
                         <p class="lead">Implementación de realidad aumentada en la aplicación</p>
                         
-                        <h4 class="mt-4">1. Configuración inicial</h4>
+                        <h4 class="mt-5">1. Configuración inicial</h4>
                         <p>Agrega estas dependencias en tu <code>build.gradle</code>:</p>
                         <pre><code>dependencies {
     implementation 'com.google.ar:core:1.35.0'
@@ -391,7 +539,7 @@
     implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.17.1'
 }</code></pre>
                         
-                        <h4 class="mt-4">2. Configura el AndroidManifest.xml</h4>
+                        <h4 class="mt-5">2. Configura el AndroidManifest.xml</h4>
                         <pre><code>&lt;uses-permission android:name="android.permission.CAMERA" /&gt;
 &lt;uses-feature android:name="android.hardware.camera.ar" android:required="true" /&gt;
 
@@ -399,7 +547,7 @@
     &lt;meta-data android:name="com.google.ar.core" android:value="required" /&gt;
 &lt;/application&gt;</code></pre>
                         
-                        <h4 class="mt-4">3. Implementación básica</h4>
+                        <h4 class="mt-5">3. Implementación básica</h4>
                         <p>Crea una actividad AR:</p>
                         <pre><code>public class ARActivity extends AppCompatActivity {
     private ArFragment arFragment;
@@ -416,23 +564,23 @@
     }
 }</code></pre>
                         
-                        <div class="alert alert-primary mt-4">
-                            <i class="bi bi-lightbulb"></i> <strong>Consejo:</strong> Usa <code>Sceneform</code> para manejar modelos 3D de manera eficiente.
+                        <div class="alert alert-primary mt-5">
+                            <i class="bi bi-lightbulb me-2"></i> <strong>Consejo:</strong> Usa <code>Sceneform</code> para manejar modelos 3D de manera eficiente.
                         </div>
                     </section>
                     
                     <!-- Vistas Principales -->
                     <section id="vistas" class="doc-section">
-                        <h2 class="fw-bold mb-4">Vistas Principales</h2>
+                        <h2 class="section-title">Vistas Principales</h2>
                         
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-4 mb-4">
                                 <div class="card h-100">
                                     <img src="src/inicio.jpg" class="card-img-top" alt="Inicio">
                                     <div class="card-body">
-                                        <h5 class="card-title">Pantalla de Inicio</h5>
-                                        <p class="card-text">Muestra productos destacados y categorías.</p>
-                                        <code>MainActivity.java</code>
+                                        <h5 class="card-title fw-bold">Pantalla de Inicio</h5>
+                                        <p class="card-text text-muted">Muestra productos destacados y categorías.</p>
+                                        <code class="text-primary">MainActivity.java</code>
                                     </div>
                                 </div>
                             </div>
@@ -440,9 +588,9 @@
                                 <div class="card h-100">
                                     <img src="src/detalleProducto.jpg" class="card-img-top" alt="Producto">
                                     <div class="card-body">
-                                        <h5 class="card-title">Detalle de Producto</h5>
-                                        <p class="card-text">Muestra detalles y opción AR.</p>
-                                        <code>ProductDetailActivity.java</code>
+                                        <h5 class="card-title fw-bold">Detalle de Producto</h5>
+                                        <p class="card-text text-muted">Muestra detalles y opción AR.</p>
+                                        <code class="text-primary">ProductDetailActivity.java</code>
                                     </div>
                                 </div>
                             </div>
@@ -450,9 +598,9 @@
                                 <div class="card h-100">
                                     <img src="src/carrito.jpg" class="card-img-top" alt="Carrito">
                                     <div class="card-body">
-                                        <h5 class="card-title">Carrito de Compras</h5>
-                                        <p class="card-text">Gestiona productos antes de pagar.</p>
-                                        <code>CartActivity.java</code>
+                                        <h5 class="card-title fw-bold">Carrito de Compras</h5>
+                                        <p class="card-text text-muted">Gestiona productos antes de pagar.</p>
+                                        <code class="text-primary">CartActivity.java</code>
                                     </div>
                                 </div>
                             </div>
@@ -464,15 +612,15 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-4 bg-secondary text-white">
+    <footer class="py-5 bg-secondary text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Azamoz Shopping</h5>
-                    <p>La mejor experiencia de compra en realidad aumentada</p>
+                    <h5 class="fw-bold mb-3">Azamoz Shopping</h5>
+                    <p class="text-white-50">La mejor experiencia de compra en realidad aumentada</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p class="mb-0">© 2025 Todos los derechos reservados a grupo de desarrolladores LivinsDev`s</p>
+                    <p class="mb-0 text-white-50">© 2025 Todos los derechos reservados a grupo de desarrolladores LivinsDev`s</p>
                 </div>
             </div>
         </div>
@@ -544,6 +692,22 @@
             
             window.addEventListener('scroll', highlightMobileNav);
             highlightMobileNav();
+        });
+        
+        // Cambiar navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow');
+                navbar.classList.add('bg-dark-blue');
+                navbar.classList.remove('bg-primary');
+                navbar.style.padding = '0.5rem 0';
+            } else {
+                navbar.classList.remove('shadow');
+                navbar.classList.remove('bg-dark-blue');
+                navbar.classList.add('bg-primary');
+                navbar.style.padding = '1rem 0';
+            }
         });
     </script>
 </body>

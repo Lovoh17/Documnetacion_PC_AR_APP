@@ -9,17 +9,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Iconos Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- CSS personalizado -->
     <style>
         :root {
-            --bs-primary: #60B1E3;
-            --bs-secondary: #232F3E;
-            --bs-accent: #f39c12;
-            --bs-dark-blue: #1A4A6A;
+            --bs-primary: #2C6A95;
+            --bs-primary-dark: #1A4A6A;
+            --bs-secondary: #1E2A36;
+            --bs-accent: #E67E22;
+            --bs-dark-blue: #0F2D42;
+            --bs-light-bg: #F8FAFC;
+            --bs-card-bg: #FFFFFF;
+            --bs-text-primary: #2D3748;
+            --bs-text-secondary: #718096;
+            --bs-border: #E2E8F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bs-light-bg);
+            color: var(--bs-text-primary);
+            line-height: 1.6;
         }
         
         .bg-primary {
@@ -38,46 +55,91 @@
             background-color: var(--bs-primary);
             border-color: var(--bs-primary);
             color: white;
+            font-weight: 500;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(44, 106, 149, 0.2);
         }
         
         .btn-primary:hover {
-            background-color: #4a9fd6;
-            border-color: #4a9fd6;
+            background-color: var(--bs-primary-dark);
+            border-color: var(--bs-primary-dark);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 106, 149, 0.3);
         }
         
         .btn-outline-primary {
             color: var(--bs-primary);
             border-color: var(--bs-primary);
+            font-weight: 500;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
         
         .btn-outline-primary:hover {
             background-color: var(--bs-primary);
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(44, 106, 149, 0.2);
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
         
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white !important;
         }
         
         .hero-section {
-            padding: 6rem 0 5rem;
+            padding: 8rem 0 6rem;
             background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .hero-section::after {
+        .hero-section::before {
             content: "";
             position: absolute;
-            bottom: -50px;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%2360B1E3" opacity=".1"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%2360B1E3" opacity=".1"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%2360B1E3"/></svg>') no-repeat;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path fill="%232C6A95" fill-opacity="0.05" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" class="shape-fill"></path></svg>');
             background-size: cover;
-            z-index: 1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .display-4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
         
         .app-showcase {
@@ -86,158 +148,247 @@
         }
         
         .phone-mockup {
-            max-width: 300px;
+            max-width: 320px;
             margin: 0 auto;
             position: relative;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
         }
         
         .phone-mockup img {
             width: 100%;
             height: auto;
-        }
-        
-        .phone-screen {
-            position: absolute;
-            top: 5.5%;
-            left: 7.5%;
-            width: 85%;
-            height: 89%;
-            border-radius: 25px;
-            overflow: hidden;
-            background-color: #fff;
+            border-radius: 30px;
         }
         
         .feature-icon {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 3.5rem;
-            height: 3.5rem;
-            margin-bottom: 1rem;
+            width: 4rem;
+            height: 4rem;
+            margin-bottom: 1.5rem;
             font-size: 1.75rem;
             color: var(--bs-primary);
-            border-radius: .75rem;
-            background-color: rgba(96, 177, 227, 0.1);
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(44, 106, 149, 0.1) 0%, rgba(44, 106, 149, 0.05) 100%);
+            box-shadow: 0 4px 6px rgba(44, 106, 149, 0.1);
         }
         
         .btn-lg {
-            padding: 0.75rem 1.75rem;
+            padding: 0.875rem 2rem;
             font-weight: 600;
             font-size: 1.1rem;
-            border-radius: 50px;
+            border-radius: 8px;
         }
         
         .text-accent {
             color: var(--bs-accent) !important;
         }
         
-        .nav-link {
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--bs-primary) !important;
-            transform: translateY(-2px);
-        }
-        
         .section-title {
             position: relative;
             display: inline-block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
         }
         
         .section-title::after {
             content: "";
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 0;
-            width: 50%;
-            height: 3px;
-            background-color: var(--bs-primary);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--bs-primary), var(--bs-accent));
+            border-radius: 2px;
         }
         
         .tech-badge {
-            background-color: rgba(96, 177, 227, 0.1);
-            color: var(--bs-dark-blue);
-            padding: 0.5rem 1rem;
+            background-color: rgba(44, 106, 149, 0.1);
+            color: var(--bs-primary-dark);
+            padding: 0.6rem 1.2rem;
             border-radius: 50px;
             font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            display: inline-block;
+            margin-right: 0.75rem;
+            margin-bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(44, 106, 149, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(44, 106, 149, 0.15);
         }
         
         .screenshot {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
             margin-bottom: 1.5rem;
+            overflow: hidden;
         }
         
         .screenshot:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background-color: var(--bs-card-bg);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-body {
+            padding: 2.5rem 2rem;
+        }
+        
+        footer {
+            background-color: var(--bs-secondary) !important;
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid var(--bs-border);
+            padding: 0.75rem 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--bs-primary);
+            box-shadow: 0 0 0 0.2rem rgba(44, 106, 149, 0.15);
+        }
+        
+        .text-muted {
+            color: var(--bs-text-secondary) !important;
+        }
+        
+        .lead {
+            color: var(--bs-text-secondary);
+            font-weight: 400;
+        }
+        
+        .section-padding {
+            padding: 6rem 0;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--bs-dark-blue) 0%, #1A4A6A 100%);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, 0px); }
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--bs-primary);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--bs-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--bs-border), transparent);
+            margin: 3rem 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 6rem 0 4rem;
+            }
+            
+            .display-4 {
+                font-size: 2.5rem;
+            }
+            
+            .section-padding {
+                padding: 4rem 0;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="src/azamoz_logo2_white1.png" alt="Azamoz Shopping" height="30" class="me-2">
-            Azamoz Shopping
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#features">Características</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#screenshots">Capturas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#download">Descargar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="View/contacto.html">Contacto</a>
-                </li>
-            </ul>
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="src/azamoz_logo2_white1.png" alt="Azamoz Shopping" height="35" class="me-2">
+                Azamoz Shopping
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#features">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#screenshots">Capturas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#download">Descargar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="View/contacto.html">Contacto</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Sección Hero -->
     <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 order-lg-1 order-2">
+                <div class="col-lg-6 order-lg-1 order-2 hero-content">
                     <h1 class="display-4 fw-bold mb-4">La mejor experiencia de compra en tu móvil</h1>
                     <p class="lead mb-4">Azamoz Shopping es una aplicación desarrollada en Android Studio con Java que te permite comprar de forma rápida y segura desde tu dispositivo móvil.</p>
                     
                     <div class="d-flex flex-wrap gap-3 mb-5">
-                        <span class="tech-badge"><i class="bi bi-android2 me-1"></i> Android</span>
-                        <span class="tech-badge"><i class="bi bi-code-slash me-1"></i> Java</span>
-                        <span class="tech-badge"><i class="bi bi-database me-1"></i> Firebase</span>
-                        <span class="tech-badge"><i class="bi bi-badge-ar"></i> ARCore</span>
+                        <span class="tech-badge"><i class="bi bi-android2 me-2"></i>Android</span>
+                        <span class="tech-badge"><i class="bi bi-code-slash me-2"></i>Java</span>
+                        <span class="tech-badge"><i class="bi bi-database me-2"></i>Firebase</span>
+                        <span class="tech-badge"><i class="bi bi-badge-ar me-2"></i>ARCore</span>
                     </div>
                     
-                    <div class="d-grid gap-2 d-sm-flex">
-                        <a href="#download" class="btn btn-primary btn-lg px-4">
+                    <div class="d-grid gap-3 d-sm-flex">
+                        <a href="https://www.mediafire.com/file/vhcz4dtqbwk6i17/Azamos_Store.apk/file" class="btn btn-primary btn-lg px-4">
                             <i class="bi bi-download me-2"></i>Descargar APK
                         </a>
-                        <a href="View/documnetacion.html" class="btn btn-outline-primary btn-lg px-4">
+                        <a href="/View/documnetacion.html" class="btn btn-outline-primary btn-lg px-4">
                             <i class="bi bi-info-circle me-2"></i>Más información
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-2 order-1 mb-5 mb-lg-0 app-showcase">
-                    <div class="phone-mockup">
-                        <img src="src/app_login.jpg" class="img-fluid">
+                    <div class="phone-mockup floating">
+                        <img src="src/app_login.jpg" class="img-fluid" alt="Azamoz Shopping App">
                     </div>
                 </div>
             </div>
@@ -245,8 +396,8 @@
     </section>
 
     <!-- Sección de características -->
-    <section id="features" class="py-5">
-        <div class="container py-5">
+    <section id="features" class="section-padding">
+        <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title fw-bold">Características Principales</h2>
                 <p class="lead text-muted">Descubre todo lo que nuestra aplicación puede ofrecerte</p>
@@ -329,8 +480,8 @@
     </section>
 
     <!-- Sección de capturas -->
-    <section id="screenshots" class="py-5 bg-light">
-        <div class="container py-5">
+    <section id="screenshots" class="section-padding bg-light">
+        <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title fw-bold">Capturas de Pantalla</h2>
                 <p class="lead text-muted">Echa un vistazo a la interfaz de nuestra aplicación</p>
@@ -360,15 +511,15 @@
     </section>
 
     <!-- Sección de descarga -->
-    <section id="download" class="py-5 bg-dark-blue text-white">
-        <div class="container py-5">
+    <section id="download" class="section-padding gradient-bg text-white">
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <h2 class="display-5 fw-bold mb-4">Descarga la aplicación ahora</h2>
                     <p class="lead mb-4">Disponible para dispositivos Android. Instala el APK y comienza a disfrutar de la mejor experiencia de compra.</p>
                     
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="https://www.mediafire.com/file/b2ki14e7t5fz3o1/app-debug.apk/file" class="btn btn-primary btn-lg px-4">
+                        <a href="https://www.mediafire.com/file/vhcz4dtqbwk6i17/Azamos_Store.apk/file" class="btn btn-primary btn-lg px-4">
                             <i class="bi bi-download me-2"></i>Descargar APK (v1.4)
                         </a>
                         <a href="#" class="btn btn-outline-light btn-lg px-4">
@@ -382,12 +533,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <img src="src/descarga.jpg" alt="Código QR para descargar" class="img-fluid" style="max-width: 250px;">
+                    <img src="/src/Untitled (1).png" alt="Código QR para descargar" class="img-fluid floating" style="max-width: 250px;">
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- Footer -->
     <footer class="py-5 bg-secondary text-white">
@@ -395,37 +545,37 @@
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <h3 class="h4 fw-bold mb-3">Azamoz Shopping</h3>
-                    <p>La mejor aplicación de compras para Android, desarrollada con Java en Android Studio.</p>
+                    <p class="mb-4">La mejor aplicación de compras para Android, desarrollada con Java en Android Studio.</p>
                     <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
                 
                 <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
                     <h4 class="h5 fw-bold mb-3">Enlaces</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Inicio</a></li>
-                        <li class="mb-2"><a href="#features" class="text-white text-decoration-none">Características</a></li>
-                        <li class="mb-2"><a href="#screenshots" class="text-white text-decoration-none">Capturas</a></li>
-                        <li class="mb-2"><a href="#download" class="text-white text-decoration-none">Descargar</a></li>
-                        <li><a href="#contact" class="text-white text-decoration-none">Contacto</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="#features" class="text-white-50 text-decoration-none">Características</a></li>
+                        <li class="mb-2"><a href="#screenshots" class="text-white-50 text-decoration-none">Capturas</a></li>
+                        <li class="mb-2"><a href="#download" class="text-white-50 text-decoration-none">Descargar</a></li>
+                        <li><a href="#contact" class="text-white-50 text-decoration-none">Contacto</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
                     <h4 class="h5 fw-bold mb-3">Legal</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Términos</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Privacidad</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Cookies</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Términos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Privacidad</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Cookies</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-lg-4 col-md-4">
                     <h4 class="h5 fw-bold mb-3">Suscríbete</h4>
-                    <p class="mb-3">Recibe actualizaciones sobre nuevas versiones y características.</p>
+                    <p class="mb-3 text-white-50">Recibe actualizaciones sobre nuevas versiones y características.</p>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="Tu email">
                         <button class="btn btn-primary" type="button">
@@ -435,14 +585,14 @@
                 </div>
             </div>
             
-            <hr class="my-4">
+            <div class="divider"></div>
             
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0 small">© 2025 Azamoz Shopping. Todos los derechos reservados. Livin Dev</p>
+                    <p class="mb-0 small text-white-50">© 2025 Azamoz Shopping. Todos los derechos reservados. Livin Dev</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 small">Desarrollado con <i class="bi bi-heart-fill text-danger"></i> usando Android Studio y Java</p>
+                    <p class="mb-0 small text-white-50">Desarrollado con <i class="bi bi-heart-fill text-danger"></i> usando Android Studio y Java</p>
                 </div>
             </div>
         </div>
@@ -470,11 +620,32 @@
                 navbar.classList.add('shadow');
                 navbar.classList.add('bg-dark-blue');
                 navbar.classList.remove('bg-primary');
+                navbar.style.padding = '0.5rem 0';
             } else {
                 navbar.classList.remove('shadow');
                 navbar.classList.remove('bg-dark-blue');
                 navbar.classList.add('bg-primary');
+                navbar.style.padding = '1rem 0';
             }
+        });
+        
+        // Animación de elementos al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animación
+        document.querySelectorAll('.card, .screenshot').forEach(el => {
+            observer.observe(el);
         });
     </script>
 </body>
